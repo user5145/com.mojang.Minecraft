@@ -1,0 +1,120 @@
+{
+  "app-id": "org.multimc.MultiMC5",
+  "runtime": "org.kde.Platform",
+  "runtime-version": "5.12",
+  "sdk": "org.kde.Sdk",
+  "command": "multimc",
+  "separate-locales": false,
+  "base": "io.atom.electron.BaseApp",
+  "base-version": "stable",
+  "tags": ["proprietary"],
+  "sdk-extensions": [
+    "org.freedesktop.Sdk.Extension.openjdk8"
+  ],
+  "finish-args": [
+    /* X11 access */
+    "--socket=x11",
+    "--share=ipc",
+    /* OpenGL access */
+    "--device=dri",
+    /* PulseAudio access */
+    "--socket=pulseaudio",
+    /* Network access */
+    "--share=network",
+    "--env=JAVA_HOME=/app/jre",
+    /* Helps multimc find java */
+    "--env=PATH=/usr/local/bin:/usr/bin:/bin:/app/jre/bin:/app/bin:/app/multimc/bin",
+    /* seems necessary to load mods from local */
+    "--filesystem=home:ro",
+    /* minecraft settings */
+    "--persist=.minecraft",
+    /* untill someone maps everything whats needed */
+    "--talk-name=org.gnome.SessionManager",
+    "--talk-name=org.kde.plasma"
+  ],
+  "build-options" : {
+    "cflags": "-mtune=generic -O2 -pipe -fstack-protector-strong -fno-plt -frecord-gcc-switches -D_FORTIFY_SOURCE=2 -msse -msse2 -mssse3 -msse3 -mfpmath=sse",
+    "cxxflags": "-mtune=generic -O2 -pipe -fstack-protector-strong -fno-plt -frecord-gcc-switches -D_FORTIFY_SOURCE=2 -msse -msse2 -mssse3 -msse3 -mfpmath=sse",
+    "ldflags": "-fstack-protector-strong -Wl,-z,relro,-z,now",
+    "append-path": "/usr/lib/sdk/openjdk8/bin"
+  },
+  "modules": [
+    {
+      /* Needed by Minecraft 1.8.2 and up. */
+      "name": "xrandr",
+      "sources": [
+        {
+          "type": "archive",
+          "url": "https://www.x.org/archive/individual/app/xrandr-1.5.0.tar.gz",
+          "sha256": "ddfe8e7866149c24ccce8e6aaa0623218ae19130c2859cadcaa4228d8bb4a46d"
+        }
+      ]
+    },
+    {
+      "name": "openjdk",
+        "buildsystem": "simple",
+        "build-commands": [
+          "/usr/lib/sdk/openjdk8/install.sh"
+        ]
+    },
+    {
+      "name": "multimc",
+      "buildsystem": "simple",
+      "build-commands": [
+        "mkdir -p /app/multimc",
+        "cmake -DCMAKE_INSTALL_PREFIX=/app/multimc",
+        "make -j8 install"
+      ],
+      "sources" : [
+        {
+          "type": "git",
+          "url": "https://github.com/MultiMC/MultiMC5.git",
+          "tag": "0.6.5",
+          "disable-shallow-clone": true
+        }
+      ]
+    },
+    {
+      "name": "multimc-resources",
+      "buildsystem": "simple",
+      "build-commands": [
+        "mkdir -p /app/bin",
+        "mv multimc /app/bin/multimc",
+        "install -Dp -m 644 org.multimc.MultiMC5.desktop /app/share/applications/org.multimc.MultiMC5.desktop",
+        "install -Dp -m 644 org.multimc.MultiMC5-64.png /app/share/icons/hicolor/64x64/apps/org.multimc.MultiMC5.png",
+        "install -Dp -m 644 org.multimc.MultiMC5-128.png /app/share/icons/hicolor/128x128/apps/org.multimc.MultiMC5.png",
+        "install -Dp -m 644 org.multimc.MultiMC5.png /app/share/icons/hicolor/256x256/apps/org.multimc.MultiMC5.png",
+        "install -Dp -m 644 org.multimc.MultiMC5.appdata.xml /app/share/appdata/org.multimc.MultiMC5.appdata.xml"
+      ],
+      "sources" : [
+        {
+          "type": "script",
+          "commands": [
+            "/app/multimc/bin/MultiMC -d \"$XDG_DATA_HOME/multimc\" $@"
+          ],
+          "dest-filename": "multimc"
+        },
+        {
+          "type": "file",
+          "path": "org.multimc.MultiMC5.desktop"
+        },
+        {
+          "type": "file",
+          "path": "org.multimc.MultiMC5-64.png"
+        },
+        {
+          "type": "file",
+          "path": "org.multimc.MultiMC5-128.png"
+        },
+        {
+          "type": "file",
+          "path": "org.multimc.MultiMC5.png"
+        },
+        {
+          "type": "file",
+          "path": "org.multimc.MultiMC5.appdata.xml"
+        }
+      ]
+    }
+  ]
+}

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <component type="desktop">
-  <id>com.mojang.Minecraft</id>
-  <name>Minecraft</name>
+  <id>org.multimc.MultiMC5</id>
+  <name>MultiMC</name>
   <name xml:lang="ar">ماين كرافت</name>
   <name xml:lang="bn">মাইনক্রাফ্ট</name>
   <name xml:lang="es">Minecraft</name>
@@ -47,7 +47,7 @@
   <metadata>
     <value key="GnomeSoftware::popular-background">https://d3lapyynmdp1i9.cloudfront.net/thumbnails/com.mojang.Minecraft/com.mojang.minecraft-thumb.jpg</value>
   </metadata>
-  <launchable type="desktop-id">com.mojang.Minecraft.desktop</launchable>
+  <launchable type="desktop-id">org.multimc.MultiMC5.desktop</launchable>
   <project_license>LicenseRef-proprietary</project_license>
   <developer_name>Mojang AB</developer_name>
   <releases>
