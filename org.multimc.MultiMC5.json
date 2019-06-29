@@ -81,8 +81,6 @@
         "mkdir -p /app/bin",
         "mv multimc /app/bin/multimc",
         "install -Dp -m 644 org.multimc.MultiMC5.desktop /app/share/applications/org.multimc.MultiMC5.desktop",
-        "install -Dp -m 644 org.multimc.MultiMC5-64.png /app/share/icons/hicolor/64x64/apps/org.multimc.MultiMC5.png",
-        "install -Dp -m 644 org.multimc.MultiMC5-128.png /app/share/icons/hicolor/128x128/apps/org.multimc.MultiMC5.png",
         "install -Dp -m 644 org.multimc.MultiMC5.png /app/share/icons/hicolor/256x256/apps/org.multimc.MultiMC5.png",
         "install -Dp -m 644 org.multimc.MultiMC5.appdata.xml /app/share/appdata/org.multimc.MultiMC5.appdata.xml"
       ],
@@ -97,14 +95,6 @@
         {
           "type": "file",
           "path": "org.multimc.MultiMC5.desktop"
-        },
-        {
-          "type": "file",
-          "path": "org.multimc.MultiMC5-64.png"
-        },
-        {
-          "type": "file",
-          "path": "org.multimc.MultiMC5-128.png"
         },
         {
           "type": "file",
