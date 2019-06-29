@@ -5,8 +5,8 @@
   "sdk": "org.kde.Sdk",
   "command": "multimc",
   "separate-locales": false,
-  "base": "io.atom.electron.BaseApp",
-  "base-version": "stable",
+  "base": "io.qt.qtwebkit.BaseApp",
+  "base-version": "5.12",
   "tags": ["proprietary"],
   "sdk-extensions": [
     "org.freedesktop.Sdk.Extension.openjdk8"
@@ -27,10 +27,11 @@
     /* seems necessary to load mods from local */
     "--filesystem=home:ro",
     /* minecraft settings */
-    "--persist=.minecraft",
+    "--persist=.minecraft:rw",
     /* untill someone maps everything whats needed */
-    "--talk-name=org.gnome.SessionManager",
-    "--talk-name=org.kde.plasma"
+    "--talk-name=org.gnome",
+    "--talk-name=org.kde",
+    "--own-name=org.multimc.*"
   ],
   "build-options" : {
     "cflags": "-mtune=generic -O2 -pipe -fstack-protector-strong -fno-plt -frecord-gcc-switches -D_FORTIFY_SOURCE=2 -msse -msse2 -mssse3 -msse3 -mfpmath=sse",
