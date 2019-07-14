@@ -70,7 +70,7 @@
         {
           "type": "git",
           "url": "https://github.com/MultiMC/MultiMC5.git",
-          "tag": "0.6.5",
+          "tag": "0.6.6",
           "disable-shallow-clone": true
         }
       ]
